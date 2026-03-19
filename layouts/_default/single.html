@@ -1,0 +1,25 @@
+{{ define "main" }}
+<article class="article">
+  <header class="article-header container narrow">
+    <p class="eyebrow">{{ .Section }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ if .Date }}
+      <p class="article-meta">{{ .Date.Format "Jan 02, 2006" }}</p>
+    {{ end }}
+    {{ with .Params.tags }}
+      <div class="post-tags article-tags">
+        {{ range . }}
+          {{ $termPage := $.Site.GetPage (printf "/tags/%s" (. | urlize)) }}
+          {{ if $termPage }}
+            <a class="tag-chip tag-chip-small" href="{{ $termPage.RelPermalink }}">#{{ . }}</a>
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+  </header>
+
+  <section class="article-content container narrow">
+    {{ .Content }}
+  </section>
+</article>
+{{ end }}

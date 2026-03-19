@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Jay Huang</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Home on Jay Huang</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Distributed Systems Prototype</title>
+      <link>http://localhost:1313/projects/distributed-systems-prototype/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/distributed-systems-prototype/</guid>
+      <description>A placeholder project page for a replication, coordination, or RPC-based systems implementation.</description>
+    </item>
+    <item>
+      <title>First Post</title>
+      <link>http://localhost:1313/writing/first-post/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writing/first-post/</guid>
+      <description>An opening post introducing the site and its intended scope.</description>
+    </item>
+    <item>
+      <title>Graduate Study</title>
+      <link>http://localhost:1313/experience/graduate-study/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/experience/graduate-study/</guid>
+      <description>Graduate-level work centered on systems, networks, and implementation-intensive coursework.</description>
+    </item>
+    <item>
+      <title>meimaid</title>
+      <link>http://localhost:1313/writing/mermaid/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writing/mermaid/</guid>
+      <description>mermaid.</description>
+    </item>
+  </channel>
+</rss>

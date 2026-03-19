@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="mermaid.">
+<title>meimaid · Jay Huang</title>
+
+<link rel="stylesheet" href="/css/main.min.2d0802b5ee674e709c96bc6bd6a4d704e82df4612b8d71f296242b852987b167.css" integrity="sha256-LQgCte5nTnCclrxr1qTXBOgt9GErjXHyliQrhSmHsWc=">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Jay Huang</a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/experience/">Experience</a>
+      <a href="/projects/">Projects</a>
+      <a href="/writing/">Writing</a>
+    </nav>
+  </div>
+</header>
+
+
+  <main class="site-main">
+    
+<article class="article">
+  <header class="article-header container narrow">
+    <p class="eyebrow">writing</p>
+    <h1>meimaid</h1>
+    
+      <p class="article-meta">Mar 18, 2026</p>
+    
+    
+      <div class="post-tags article-tags">
+        
+          
+          
+            <a class="tag-chip tag-chip-small" href="/tags/mermaid/">#mermaid</a>
+          
+        
+          
+          
+            <a class="tag-chip tag-chip-small" href="/tags/diagram/">#diagram</a>
+          
+        
+          
+          
+            <a class="tag-chip tag-chip-small" href="/tags/markdown/">#markdown</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <section class="article-content container narrow">
+    <h1 id="mermaid">mermaid</h1>
+<p>usful tool for diagrams</p>
+<p><a href="https://mermaid.js.org/syntax/flowchart.html">https://mermaid.js.org/syntax/flowchart.html</a></p>
+<h2 id="flowchart">flowChart</h2>
+<div class="diagram-block">
+  <pre class="mermaid">flowchart TD
+Start --&gt; Stop</pre>
+</div>
+
+<h2 id="classdiagram">classDiagram</h2>
+<div class="diagram-block">
+  <pre class="mermaid">classDiagram
+    note &#34;From Duck till Zebra&#34;
+    Animal &lt;|-- Duck
+    note for Duck &#34;can fly&lt;br&gt;can swim&lt;br&gt;can dive&lt;br&gt;can help in debugging&#34;
+    Animal &lt;|-- Fish
+    Animal &lt;|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        -int sizeInFeet
+        -canEat()
+    }
+    class Zebra{
+        +bool is_wild
+        +run()
+    }</pre>
+</div>
+
+
+  </section>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2026 Jay Huang</p>
+    <p></p>
+  </div>
+</footer>
+
+  <script type="module" src="/js/mermaid-init.js"></script>
+</body>
+</html>

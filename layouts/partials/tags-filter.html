@@ -1,0 +1,51 @@
+{{- $ctx := .ctx -}}
+{{- $pages := .pages -}}
+{{- $active := .active | default "" -}}
+{{- $baseURL := "/writing/" | relURL -}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "tagSlugs" (slice) -}}
+{{- $tagStats := slice -}}
+
+{{- range $pages -}}
+  {{- with .Params.tags -}}
+    {{- range . -}}
+      {{- $label := . -}}
+      {{- $slug := $label | urlize -}}
+      {{- $countKey := printf "count:%s" $slug -}}
+      {{- $labelKey := printf "label:%s" $slug -}}
+      {{- if not ($scratch.Get $countKey) -}}
+        {{- $scratch.Set "tagSlugs" (($scratch.Get "tagSlugs") | append $slug) -}}
+        {{- $scratch.Set $countKey 0 -}}
+        {{- $scratch.Set $labelKey $label -}}
+      {{- end -}}
+      {{- $scratch.Set $countKey (add ($scratch.Get $countKey) 1) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $slug := ($scratch.Get "tagSlugs") -}}
+  {{- $label := $scratch.Get (printf "label:%s" $slug) -}}
+  {{- $count := $scratch.Get (printf "count:%s" $slug) -}}
+  {{- $termPage := $ctx.Site.GetPage (printf "/tags/%s" $slug) -}}
+  {{- if $termPage -}}
+    {{- $tagStats = $tagStats | append (dict "slug" $slug "label" $label "count" $count "url" $termPage.RelPermalink) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $tagStats = sort $tagStats "count" "desc" -}}
+
+{{- if gt (len $tagStats) 0 -}}
+  <nav class="tag-filter" aria-label="Filter writing by tag" data-tag-filter data-base-url="{{ $baseURL }}">
+    <a class="tag-chip{{ if eq $active "" }} is-active{{ end }}" href="{{ $baseURL }}" data-tag="">All</a>
+    {{- range $item := $tagStats -}}
+      {{- $slug := $item.slug -}}
+      {{- $label := $item.label -}}
+      {{- $count := $item.count -}}
+      {{- $url := $item.url -}}
+      <a class="tag-chip{{ if eq $active $slug }} is-active{{ end }}" href="{{ $url }}" data-tag="{{ $slug }}">
+        #{{ $label }} <span class="tag-count">{{ $count }}</span>
+      </a>
+    {{- end -}}
+  </nav>
+  <p class="tag-filter-meta" data-tag-summary>可多选标签进行组合筛选（AND），标签按文章出现次数从高到低排序。</p>
+{{- end -}}

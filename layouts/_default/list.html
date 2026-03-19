@@ -1,0 +1,74 @@
+{{ define "main" }}
+{{- $isWritingSection := and (eq .Kind "section") (eq .Section "writing") -}}
+{{- $isTagTerm := and (eq .Kind "term") (eq .Data.Plural "tags") -}}
+{{- $enableTagFilter := or $isWritingSection $isTagTerm -}}
+{{- $writingPages := where site.RegularPages "Section" "writing" -}}
+{{- $activeTag := "" -}}
+{{- if $isTagTerm -}}
+  {{- $activeTag = .Data.Term | urlize -}}
+{{- end -}}
+{{- $listPages := .RegularPages -}}
+{{- if $isTagTerm -}}
+  {{- $listPages = where .RegularPages "Section" "writing" -}}
+{{- end -}}
+
+<section class="page-header container narrow">
+  <p class="eyebrow">{{ if $isTagTerm }}Tag{{ else }}Section{{ end }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ if $isTagTerm }}
+    <p class="page-intro">Showing writing tagged with <strong>#{{ .Data.Term }}</strong>.</p>
+  {{ else }}
+    {{ with .Content }}
+      <div class="page-intro">
+        {{ . }}
+      </div>
+    {{ end }}
+  {{ end }}
+</section>
+
+<section class="container narrow">
+  {{ if $enableTagFilter }}
+    <div data-tag-filter-root data-initial-tag="{{ $activeTag }}" data-base-url="{{ "/writing/" | relURL }}">
+      {{ partial "tags-filter.html" (dict "ctx" . "pages" $writingPages "active" $activeTag) }}
+  {{ end }}
+
+  <div class="post-list"{{ if $enableTagFilter }} data-tag-post-list{{ end }}>
+    {{ range $listPages.ByDate.Reverse }}
+      {{- $tagSlugs := slice -}}
+      {{- with .Params.tags -}}
+        {{- range . -}}
+          {{- $tagSlugs = $tagSlugs | append (. | urlize) -}}
+        {{- end -}}
+      {{- end -}}
+      <article class="post-item"{{ if $enableTagFilter }} data-post-tags="{{ delimit $tagSlugs " " }}"{{ end }}>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ if .Date }}
+          <p class="post-meta">{{ .Date.Format "Jan 02, 2006" }}</p>
+        {{ end }}
+        {{ with .Params.tags }}
+          <div class="post-tags">
+            {{ range . }}
+              {{ $termPage := $.Site.GetPage (printf "/tags/%s" (. | urlize)) }}
+              {{ if $termPage }}
+                <a class="tag-chip tag-chip-small" href="{{ $termPage.RelPermalink }}">#{{ . }}</a>
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+        {{ with .Params.summary }}
+          <p>{{ . }}</p>
+        {{ end }}
+      </article>
+    {{ end }}
+  </div>
+
+  {{ if $enableTagFilter }}
+      <p class="tag-empty-state" data-tag-empty-state hidden>没有匹配的文章，请减少标签组合。</p>
+    </div>
+  {{ end }}
+</section>
+
+{{ if $enableTagFilter }}
+  <script defer src="{{ "js/tags-filter.js" | relURL }}"></script>
+{{ end }}
+{{ end }}

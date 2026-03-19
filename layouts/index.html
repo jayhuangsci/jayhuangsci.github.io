@@ -1,0 +1,48 @@
+{{ define "main" }}
+<section class="hero container">
+  <div class="hero-identity">
+    <h1 class="hero-title">{{ .Site.Title }}</h1>
+    <figure class="hero-avatar">
+      <img class="hero-avatar-image" src="{{ "images/avatar.png" | relURL }}" alt="{{ .Site.Title }} profile photo" loading="eager">
+    </figure>
+  </div>
+  <p class="hero-subtitle">{{ .Site.Params.role }}</p>
+</section>
+
+<section class="intro container narrow">
+  <p>{{ .Site.Params.intro }}</p>
+</section>
+
+<section class="home-grid container">
+  <div class="home-card">
+    <p class="eyebrow">About</p>
+    <h2><a href="{{ "/about/" | relURL }}">Background</a></h2>
+    <p>Academic profile, research interests, and a concise personal introduction.</p>
+  </div>
+
+  <div class="home-card">
+    <p class="eyebrow">Projects</p>
+    <h2><a href="{{ "/projects/" | relURL }}">Selected work</a></h2>
+    <p>Technical projects, course work, and implementation-focused summaries.</p>
+  </div>
+</section>
+
+<section class="home-section container">
+  <div class="section-heading">
+    <h2>Selected writing</h2>
+    <a href="{{ "/writing/" | relURL }}">View all</a>
+  </div>
+
+  <div class="post-list">
+    {{ range first 5 (where site.RegularPages "Section" "writing") }}
+      <article class="post-item">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p class="post-meta">{{ .Date.Format "Jan 02, 2006" }}</p>
+        {{ with .Params.summary }}
+          <p>{{ . }}</p>
+        {{ end }}
+      </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

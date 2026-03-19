@@ -1,0 +1,3 @@
+{{- if .Store.Get "hasMermaid" -}}
+  <script type="module" src="{{ "js/mermaid-init.js" | relURL }}"></script>
+{{- end -}}

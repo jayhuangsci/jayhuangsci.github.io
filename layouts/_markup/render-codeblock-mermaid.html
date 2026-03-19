@@ -1,0 +1,5 @@
+{{- $diagram := .Inner | strings.TrimSpace -}}
+<div class="diagram-block">
+  <pre class="mermaid">{{ $diagram | htmlEscape | safeHTML }}</pre>
+</div>
+{{ .Page.Store.Set "hasMermaid" true }}
