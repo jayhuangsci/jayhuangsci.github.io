@@ -16,7 +16,7 @@ https://mermaid.js.org/syntax/flowchart.html
 
 
 
-## flowChart
+## flowChart(activity diagram)
 
 ```mermaid
 flowchart TD
@@ -50,6 +50,8 @@ classDiagram
         +run()
     }
 ```
+
+
 
 
 
