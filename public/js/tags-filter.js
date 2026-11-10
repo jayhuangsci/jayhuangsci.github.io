@@ -75,9 +75,11 @@ function initTagFilter(root) {
 
     if (summary) {
       if (selectedSet.size === 0) {
-        summary.textContent = '当前显示全部文章。';
+        summary.textContent = 'Showing all articles.';
       } else {
-        summary.textContent = `已选择 ${selectedSet.size} 个标签，按 AND 组合筛选。`;
+        summary.textContent = selectedSet.size === 1
+          ? 'Showing articles that match the selected tag.'
+          : 'Showing articles that match all selected tags.';
       }
     }
 

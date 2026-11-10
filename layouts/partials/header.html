@@ -1,13 +1,30 @@
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="site-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+{{- $links := slice
+  (dict "name" "Home" "path" "/")
+  (dict "name" "Writing" "path" "/writing/")
+  (dict "name" "Projects" "path" "/projects/")
+  (dict "name" "Experience" "path" "/experience/")
+  (dict "name" "About" "path" "/about/")
+-}}
+<div class="site-sidebar">
+  <details class="site-drawer" id="site-drawer" open>
+    <summary class="drawer-toggle" aria-label="Site menu">
+      <span class="drawer-toggle-icon" aria-hidden="true"></span>
+      <span class="drawer-toggle-text">Menu</span>
+    </summary>
 
-    <nav class="site-nav" aria-label="Primary">
-      <a href="{{ "/" | relURL }}">Home</a>
-      <a href="{{ "/about/" | relURL }}">About</a>
-      <a href="{{ "/experience/" | relURL }}">Experience</a>
-      <a href="{{ "/projects/" | relURL }}">Projects</a>
-      <a href="{{ "/writing/" | relURL }}">Writing</a>
-    </nav>
-  </div>
-</header>
+    <div class="drawer-panel">
+      <a class="drawer-brand site-title" href="{{ "/" | relURL }}">
+        <img class="drawer-avatar" src="{{ "images/avatar.png" | relURL }}" alt="" width="48" height="48">
+        {{ .Site.Title }}
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        {{ range $links }}
+          {{- $url := .path | relURL -}}
+          <a href="{{ $url }}"{{ if eq $.RelPermalink $url }} aria-current="page"{{ else if and (ne .path "/") (hasPrefix $.RelPermalink $url) }} class="is-current-section"{{ end }}>{{ .name }}</a>
+        {{ end }}
+      </nav>
+    </div>
+  </details>
+  <a class="mobile-site-title site-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+</div>
