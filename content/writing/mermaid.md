@@ -1,29 +1,22 @@
-
-
 ---
-title: "meimaid"
+title: "Diagramming with Mermaid"
 date: 2026-03-18
 draft: false
+featured: true
 tags: ["mermaid", "diagram", "markdown"]
-summary: "mermaid."
+summary: "Use Mermaid in Markdown to document workflows and class relationships. This note includes a flowchart and a class diagram."
 ---
 
-# mermaid 
+Mermaid is useful for creating diagrams directly in Markdown. See the [Mermaid flowchart documentation](https://mermaid.js.org/syntax/flowchart.html).
 
-usful tool for diagrams
-
-https://mermaid.js.org/syntax/flowchart.html
-
-
-
-## flowChart(activity diagram)
+## Flowchart
 
 ```mermaid
 flowchart TD
 Start --> Stop
 ```
 
-## classDiagram
+## Class diagram
 
 ```mermaid
 classDiagram
