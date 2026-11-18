@@ -1,6 +1,4 @@
 ---
 title: "Writing"
-summary: "Notes, essays, and technical reflections."
+summary: "Project notes and technical articles by Jay Huang."
 ---
-
-A collection of articles and technical writing.

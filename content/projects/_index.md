@@ -1,6 +1,8 @@
 ---
 title: "Projects"
-summary: "Selected implementation-focused technical work."
+summary: "Project repositories on GitHub."
+aliases: ["/projects/distributed-systems-prototype/"]
 ---
 
-A curated set of projects covering systems, networking, simulation, and software engineering.
+- [HabitTracker](https://github.com/jayhuangsci/HabitTracker)
+- [Distdemo](https://github.com/jayhuangsci/distributedSysUtilsDemo)
